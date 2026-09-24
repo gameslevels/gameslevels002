@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Mis Juegos</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GamesLevels</title>
+<style>
+body{margin:0;font-family:Arial;background:#0f172a;color:white}
+header{background:#1e293b;padding:20px;text-align:center}
+input{width:90%;max-width:400px;padding:12px;border-radius:10px;border:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px;padding:20px}
+.card{background:#1e293b;border-radius:15px;padding:20px;text-align:center;cursor:pointer;transition:.2s}
+.card:hover{transform:scale(1.05);background:#334155}
+a{color:white;text-decoration:none}
+</style>
 </head>
 <body>
-    <h1>Mis Juegos</h1>
-    <p>Bienvenido a mi web.</p>
+<header>
+<h1>GamesLevels</h1>
+<input placeholder="Buscar juegos...">
+</header>
 
-    <a href="https://example.com">Juego 1</a>
+<div class="grid">
+<div class="card"><a href="#">Minecraft</a></div>
+<div class="card"><a href="#">Slope</a></div>
+<div class="card"><a href="#">Run 3</a></div>
+<div class="card"><a href="#">Retro Bowl</a></div>
+<div class="card"><a href="#">Tetris</a></div>
+<div class="card"><a href="#">2048</a></div>
+</div>
 </body>
 </html>
