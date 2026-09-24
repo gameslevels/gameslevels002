@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tetris - GamesLevels</title>
+
+<style>
+body {
+  margin: 0;
+  background: #0f172a;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+}
+
+h1 {
+  margin: 20px 0 10px;
+}
+
+canvas {
+  background: #020617;
+  border: 3px solid #334155;
+  max-width: 90vw;
+  height: auto;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #334155;
+  color: white;
+  font-size: 16px;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎮 Tetris</h1>
+<canvas id="game" width="240" height="480"></canvas>
+
+<br>
+<button onclick="location.reload()">Reiniciar</button>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+const COLS = 10;
+const ROWS = 20;
+const SIZE = 24;
+
+const board = Array.from({length: ROWS}, () => Array(COLS).fill(0));
+
+const pieces = [
+  [[1,1,1,1]],
+  [[1,1],[1,1]],
+  [[0,1,0],[1,1,1]],
+  [[1,0,0],[1,1,1]],
+  [[0,0,1],[1,1,1]],
+  [[1,1,0],[0,1,1]],
+  [[0,1,1],[1,1,0]]
+];
+
+let player;
+let score = 0;
+let gameOver = false;
+
+function newPiece() {
+  const shape = pieces[Math.floor(Math.random() * pieces.length)];
+  player = {
+    shape: shape.map(row => [...row]),
+    x: 3,
+    y: 0
+  };
+
+  if (collision()) {
+    gameOver = true;
+    alert("Game Over! Puntuación: " + score);
+  }
+}
+
+function collision() {
+  for (let y = 0; y < player.shape.length; y++) {
+    for (let x = 0; x < player.shape[y].length; x++) {
+      if (!player.shape[y][x]) continue;
+
+      const nx = player.x + x;
+      const ny = player.y + y;
+
+      if (
